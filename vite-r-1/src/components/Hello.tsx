@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import PropTypes, { func } from "prop-types";
+import PropTypes from "prop-types";
+import Mylist from "./List";
 
 Hel.prototype = {
     nome: PropTypes.string.isRequired,
@@ -10,15 +11,17 @@ Hel.defaultProps = {
     nome: "junior"
 }
 
+
 function Hel( /*desestruturacao -> */ {nome, idade} ) {
-
+    
     const [use, state] = useState(0)
-
+    
     function meuEvento() {
         console.log("o evento aconteceu");
         state(use => use + 1)
     }
-    
+
+    const mya = ['aaaa', 'bbbb', 'cc']
     
     return (
         <>
@@ -28,6 +31,7 @@ function Hel( /*desestruturacao -> */ {nome, idade} ) {
             
             <p>Fala ai {nome} {idade}!!</p>
             <button onClick={meuEvento} className="border-black">{use}</button>
+            <Mylist  mya={mya} />
         </>
     )
 }
