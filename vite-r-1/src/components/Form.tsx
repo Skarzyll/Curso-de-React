@@ -11,7 +11,7 @@ export default function Form({ title, setarNome, nome }) {
                     Seu nome: <input type="text" placeholder="Nome!" onChange={(e) => setarNome(e.target.value)} />
                 </label>
             </form>
-            <p>{nome}</p>
+            {nome && <p>{nome}</p>}
         </>
     )
 }
