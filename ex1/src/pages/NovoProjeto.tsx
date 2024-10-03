@@ -4,6 +4,7 @@ export default function NovoProjeto() {
     return(
         <div className="h-screen w-screen p-3">
             <Header />
+            <p>Novo projeto</p>
         </div>
     )
 }
