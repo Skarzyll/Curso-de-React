@@ -3,9 +3,9 @@ import Header from "../components/Header";
 
 export default function Home() {
     return(
-        <div className="h-screen w-screen p-3"> 
+        <div className="h-screen w-screen"> 
             <Header />
-            <h1>ssss</h1>
+            <div className="min-h-min-70">aaaa</div>
             <Footer />
         </div>
     )
