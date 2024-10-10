@@ -7,6 +7,7 @@ import NotFoundPage from './404.tsx'
 import Contato from './pages/Contato.tsx'
 import Empresa from './pages/Empresa.tsx'
 import NovoProjeto from './pages/NovoProjeto.tsx'
+import Projetos from './pages/Projetos.tsx'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: '/pages/NovoProjeto.tsx',
     element: <NovoProjeto />
+  },
+  {
+    path: '/pages/Projetos.tsx',
+    element: <Projetos />
   }
 ])
 
