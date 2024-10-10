@@ -1,10 +1,13 @@
-import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+
 
 export default function Projetos() {
     return(
-        <div>
-            <NavBar />
-            <p>projetos</p>
+        <div className="h-screen w-screen">
+            <Header />
+            <div className="min-h-min-70">Projetos</div>
+            <Footer />
         </div>
     )
 }
