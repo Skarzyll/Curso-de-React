@@ -1,4 +1,5 @@
 import Input from "./Input";
+import Select from "./Select";
 
 export default function Form() {
     return(
@@ -11,7 +12,7 @@ export default function Form() {
                     id="n" 
                     placeholder="Insira o nome do projeto." 
                     handlechange={function(){}} 
-                    //value="" 
+                    value={""} 
                 />
                 <Input 
                     nomelabel="Orçamento" 
@@ -20,15 +21,11 @@ export default function Form() {
                     id="o"
                     placeholder="Insira o orçamento do projeto."
                     handlechange={function(){}}
-                    //value=""
+                    value={""}
                 />
-                <select name="" id="" className="m-2" >
-                    <option value="" disabled selected>Selecione a categoria</option>
-                    <option value="a">a</option>
-                    <option value="">s</option>
-                </select>
+                <Select nomelabel={"Selecione uma opção:"} name={"categoria_id"} id={""}  handlechange={function(){}} value={""} />
             </form>
-            <button type="button" className="bg-zinc-500 p-2">Criar projeto</button>
+            <button type="submit" className="bg-zinc-500 p-2">Criar projeto</button>
         </>
     )
 }    
