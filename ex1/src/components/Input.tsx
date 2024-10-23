@@ -13,7 +13,7 @@ export default function Input({nomelabel, type, name, id, placeholder, handlecha
         <>
             <label>
                 {nomelabel}:
-                <input type={type} name={name} id={id} placeholder={placeholder} onChange={handlechange} value={value} className="m-2" />
+                <input type={type} name={name} id={id} placeholder={placeholder} onChange={handlechange} value={value} minLength={8} maxLength={20} className="m-2" />
             </label><br />
         </>
     )
