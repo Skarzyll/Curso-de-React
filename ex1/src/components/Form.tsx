@@ -2,17 +2,23 @@ import { useEffect, useState } from "react";
 import Input from "./Input";
 import Select from "./Select";
 
-export default function Form() {
+interface FormProps {
+    handleSubmit: (Event: React.ChangeEvent<HTMLInputElement>) => void,
+    dadoprojeto: string,
+}
+
+export default function Form({ handleSubmit, dadoprojeto } : FormProps) {
 
     const [categorias, setcategoria] = useState([])
-    const [valorinput, setvalorinput] = useState("")
-    const [orcinput, setorcinput] = useState("")
+    const [projeto, setprojeto] = useState(dadoprojeto || {})
 
-    const handlechange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setvalorinput(event.target.value)
+    const Submit = (e) => {
+        e.preventDefault()
+        handleSubmit(projeto)
     }
-    const handlechange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setorcinput(event.target.value)
+
+    function handlechange(e) {
+        setprojeto({...projeto, [e.target.nome] : e.target.value})
     }
 
     useEffect(() => {
@@ -32,15 +38,15 @@ export default function Form() {
 
     return(
         <>
-            <form action="" method="post" className="text-center">
+            <form onSubmit={Submit} method="post" className="text-center">
                 <Input 
                     nomelabel="Nome"
                     type="text" 
                     name=""
                     id="n" 
                     placeholder="Insira o nome do projeto." 
-                    handlechange={handlechange1} 
-                    value={valorinput} 
+                    handlechange={handlechange} 
+                    value={""} 
                 />
                 <Input 
                     nomelabel="Orçamento" 
@@ -48,8 +54,8 @@ export default function Form() {
                     name=""
                     id="o"
                     placeholder="Insira o orçamento do projeto."
-                    handlechange={handlechange2}
-                    value={orcinput}
+                    handlechange={handlechange}
+                    value={""}
                 />
                 <Select 
                     nomelabel={"Selecione uma opção:"}
