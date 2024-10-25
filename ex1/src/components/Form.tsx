@@ -3,7 +3,7 @@ import Input from "./Input";
 import Select from "./Select";
 
 interface FormProps {
-    handleSubmit: (Event: React.ChangeEvent<HTMLInputElement>) => void,
+    handleSubmit: (projeto: unknown) => void,
     dadoprojeto: string,
 }
 
@@ -12,13 +12,25 @@ export default function Form({ handleSubmit, dadoprojeto } : FormProps) {
     const [categorias, setcategoria] = useState([])
     const [projeto, setprojeto] = useState(dadoprojeto || {})
 
-    const Submit = (e) => {
+    const Submit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         handleSubmit(projeto)
+        console.log(projeto);
+        
+    }
+    
+    function handlechange(e: React.ChangeEvent<HTMLInputElement>) {
+        setprojeto({...projeto, [e.target.name] : e.target.value})
     }
 
-    function handlechange(e) {
-        setprojeto({...projeto, [e.target.nome] : e.target.value})
+    function handlecategoria(e: React.ChangeEvent<HTMLInputElement>) {
+        setprojeto({
+            ...projeto,
+            categoria: {
+                id: e.target.value,
+                name: e.target.options[e.target.selectedIndex].text,
+            }
+        })
     }
 
     useEffect(() => {
@@ -42,26 +54,27 @@ export default function Form({ handleSubmit, dadoprojeto } : FormProps) {
                 <Input 
                     nomelabel="Nome"
                     type="text" 
-                    name=""
-                    id="n" 
+                    name="name"
+                    id="" 
+                    value={projeto.name}
                     placeholder="Insira o nome do projeto." 
-                    handlechange={handlechange} 
-                    value={""} 
+                    handleonchange={handlechange}  
                 />
                 <Input 
                     nomelabel="Orçamento" 
                     type="number"
-                    name=""
-                    id="o"
+                    name="buy"
+                    id="buy"
+                    value={projeto.buy}
                     placeholder="Insira o orçamento do projeto."
-                    handlechange={handlechange}
-                    value={""}
+                    handleonchange={handlechange}
                 />
                 <Select 
                     nomelabel={"Selecione uma opção:"}
                     name={"categoria_id"} 
-                    options={categorias} 
-                    /* handlechange={function () {}}  */
+                    options={categorias}
+                    value={projeto.categoria ? projeto.categoria.id : ''}
+                    handleonchange={handlecategoria} 
                 />
             </form>
             <button type="submit" className="bg-zinc-500 p-2">Criar projeto</button>

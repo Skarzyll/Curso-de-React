@@ -7,14 +7,16 @@ interface SelectProps {
     nomelabel: string,
     name: string,
     options: option[],
-    /* handlechange: (Event: React.ChangeEvent<HTMLInputElement>) => void, */
+    value: string,
+    handleonchange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
 }
 
-export default function Select({nomelabel, name, options} : SelectProps) {
+export default function Select({nomelabel, name, options, handleonchange, value} : SelectProps) {
+
     return(
         <label htmlFor={name}>
             {nomelabel}
-            <select name={name} id={name} className="m-2" >
+            <select name={name} id={name} onChange={handleonchange} value={value} className="m-2" >
                 <option disabled selected>Selecione a categoria</option>
                 {options.map((option) => (
                     <option value={option.id} id={option.id} key={option.id}>
