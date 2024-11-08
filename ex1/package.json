@@ -2,7 +2,7 @@
   "name": "ex1",
   "private": true,
   "version": "0.0.0",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "backend": "Server.js",
@@ -13,6 +13,10 @@
   "dependencies": {
     "@types/sequelize": "^4.28.20",
     "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-handlebars": "^8.0.1",
     "mysql2": "^3.11.4",
     "nodemon": "^3.1.7",
     "react": "^18.3.1",
@@ -24,6 +28,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@types/ejs": "^3.1.5",
+    "@types/express": "^5.0.0",
     "@types/node": "^22.9.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
