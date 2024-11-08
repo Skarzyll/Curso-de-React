@@ -1,14 +1,4 @@
-interface InputProps {
-    nomelabel: string,
-    type: string,
-    name: string,
-    id: string,
-    placeholder: string,
-    handleonchange: (Event: React.ChangeEvent<HTMLInputElement>) => void,
-    value: string,
-}
-
-export default function Input({nomelabel, type, name, id, placeholder, handleonchange, value} : InputProps) {
+export default function Input( {nomelabel, type, name, id, placeholder, handleonchange, value} ) {
     return(
         <>
             <label>

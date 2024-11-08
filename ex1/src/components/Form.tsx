@@ -1,29 +1,25 @@
 import { useEffect, useState } from "react";
 import Input from "./Input";
 import Select from "./Select";
+import Projetos from "../pages/Projetos";
 
-interface FormProps {
-    handleSubmit: (projeto: unknown) => void,
-    dadoprojeto: string,
-}
-
-export default function Form({ handleSubmit, dadoprojeto } : FormProps) {
+export default function Form({ handleSubmit, dadoprojeto }) {
 
     const [categorias, setcategoria] = useState([])
     const [projeto, setprojeto] = useState(dadoprojeto || {})
 
-    const Submit = (e: React.FormEvent<HTMLFormElement>) => {
+    const Submit = (e) => {
         e.preventDefault()
         handleSubmit(projeto)
         console.log(projeto);
         
     }
     
-    function handlechange(e: React.ChangeEvent<HTMLInputElement>) {
+    function handlechange(e) {
         setprojeto({...projeto, [e.target.name] : e.target.value})
     }
 
-    function handlecategoria(e: React.ChangeEvent<HTMLInputElement>) {
+    function handlecategoria(e) {
         setprojeto({
             ...projeto,
             categoria: {
@@ -50,7 +46,7 @@ export default function Form({ handleSubmit, dadoprojeto } : FormProps) {
 
     return(
         <>
-            <form onSubmit={Submit} method="post" className="text-center">
+            <form onSubmit={Submit} action="./Projetos.tsx" method="post" className="text-center">
                 <Input 
                     nomelabel="Nome"
                     type="text" 
@@ -76,8 +72,9 @@ export default function Form({ handleSubmit, dadoprojeto } : FormProps) {
                     value={projeto.categoria ? projeto.categoria.id : ''}
                     handleonchange={handlecategoria} 
                 />
+                
+                <button type="submit" className="bg-zinc-500 p-2">Criar projeto</button>
             </form>
-            <button type="submit" className="bg-zinc-500 p-2">Criar projeto</button>
         </>
     )
 }    
