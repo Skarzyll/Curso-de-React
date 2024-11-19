@@ -15,6 +15,7 @@ app.post('/', async (req, res) => {
             buy: req.body.buy,
             categoria_id: req.body.categoria_id
         })
+        .then(res.location(req.get("Referrer") || "/"))
     } catch (error) {
         console.log(error)
     }
@@ -30,11 +31,11 @@ app.get('/projects', async (req, res) => {
     }
 })
 
-app.get('/delete/:id', async (req, res) => {
+app.get('/projects/:id', async (req, res) => {
     try {
-        Project.destroy({
+        await Project.destroy({
             where: {
-                'id': req.params.id
+                id: req.params.id
             }
         })
         .then(console.log('ok'))

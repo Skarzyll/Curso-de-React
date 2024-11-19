@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useEffect } from "react";
+import  CardDeleteButton  from "@/components/DeleteData";
+import Project from "@/DB/Server.mjs";
 
 type Project = {
-    id: number;
+    id: string;
     name: string;
     buy: number;
     categoria_id: string;
@@ -20,20 +22,15 @@ export default function GetDataProject() {
             .then(res => res.json())
             .then(dados => setProjects(dados))
             .catch(error => console.error('Erro ao buscar projetos:', error));
-    }, []);
+    }, []);    
 
-    return (
-        <div>
-            {
-                projects.map((project) => (
-                    
-                    <>
-                        <p key={project.id}>{project.createdAt}</p>
-                        <button type="button">deletar</button>
-                    </>
-                    
-                ))
-            }
-        </div>
-    )
+    const ProjectData = projects.map((project) => (
+
+        <ul key={project.id}>
+            <p key={project.id}>{project.name} criado em: {project.createdAt}</p>
+            <CardDeleteButton id={project.id} />
+        </ul>
+    ))
+
+    return ProjectData
 }
