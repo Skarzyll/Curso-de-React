@@ -15,7 +15,7 @@ export default function Home() {
             <span className="bg-zinc-950 text-yellow-500 p-1">Costs</span>
           </strong>
         </h1>
-        <p className="text-neutral-600">
+        <p className="text-neutral-600 m-4">
           Comece a gerenciar seus projetos agora mesmo!
         </p>
         <LinkButton to={"/NovoProjeto"} text={"Novo Projeto!"} />
