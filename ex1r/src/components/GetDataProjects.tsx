@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import  CardDeleteButton  from "@/components/DeleteData";
+import CardDeleteButton from "@/components/DeleteData";
 import Project from "@/DB/Server.mjs";
 import Loading from "./Loading";
 
@@ -17,35 +17,36 @@ type Project = {
 export default function GetDataProject() {
 
     const [projects, setProjects] = useState<Project[]>([]);
-    const [Loading, setLoading] = useState(false);
+    const [RLoading, setLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(true)
         setTimeout(() => {
             fetch('http://localhost:9090/projects')
                 .then(res => res.json())
                 .then(dados => {
-                    setLoading(true)
                     setProjects(dados)
+                    setLoading(false)
                 })
-                .catch(error => console.error('Erro ao buscar projetos:', error));
+                .catch(error => {
+                    console.error('Erro ao buscar projetos:', error)
+                    setLoading(false)
+                });
         }, 3000);
-    }, []);    
+    }, []);
 
-    if(!projects || projects.length === 0) {
-        return <p>Plaishfdlasj</p>
-    }
-    if(!Loading) {
-        return(
-            <Loading/> 
-        )
+    if(RLoading) {
+        return <Loading/>
+    } else if (projects.length === 0) {
+        return <p>Sem projetos</p>
     }
 
     const ProjectData = projects.map((project) => (
-        <ul key={project.id}>
-            <p key={project.id}>{project.name} criado em: {project.createdAt}</p>
-            <CardDeleteButton id={project.id} />
-        </ul>
+        <div key={project.id}>
+            <ul>
+                <p key={project.id}>{project.name} criado em: {project.createdAt}</p>
+                <CardDeleteButton id={project.id} />
+            </ul>
+        </div>
     ))
 
     return ProjectData
